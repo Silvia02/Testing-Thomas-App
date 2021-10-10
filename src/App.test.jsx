@@ -8,7 +8,8 @@ globalThis.React = React;
 // see: https://reactjs.org/docs/test-utils.html
 // and https://testing-library.com/docs/queries/about/
 import {render, cleanup} from '@testing-library/react';
-import {act} from 'react-dom/test-utils';
+import { act } from 'react-dom/test-utils';
+import Cart from './Cart';
 
 // Make fetch work be mocking it with node-fetch
 // (does require that you run the backend whilst running tests)
@@ -72,8 +73,8 @@ test('that that adding two items of the first product gives a correct row-sum in
     // that is controlled by React, you can't use 
     // document.querySelector('input').value, so look into the test module
     // Simulate instead: https://reactjs.org/docs/test-utils.html
-
-
+   
+    
     // IF YOU WANT TO CONTINUE CREATING TEST YOU CAN DO SO IN HERE
     // USING JEST EXPECT SYNTAX IN CONJUNCTION WITH
     // READING DATA FROM THE DOM AND CLICKING THINS IN TH DOM
@@ -89,4 +90,20 @@ test('that that adding two items of the first product gives a correct row-sum in
   });
 }, 50000);
 
+test('the shopping cart should be empty after empty-cart-button get clicked ', async () => {
+
+ await act(async () => {
+
+    render(<App />);
+    await sleep(1000); // wait for fetches
+    let emptyCartButton = document.querySelector('.empty-cart')
+    emptyCartButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    //emptyCartButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    //emptyCartButton.click();
+    await sleep(200);
+    expect(document.querySelector('.cart').innerHTML.includes('The cart is empty')).toBe(true);
+
+
+  });
+}, 50000);
 
