@@ -68,6 +68,8 @@ test('that that adding two items of the first product gives a correct row-sum in
     // toFixed used to make sure we don't run into rounding errors (see 0.1+0.2)
     expect(rowSum.toFixed(2)).toBe((priceOfFirstProduct * 2).toFixed(2));
 
+   
+
     // If you should need to change the value of a input field
     // that is controlled by React, you can't use 
     // document.querySelector('input').value, so look into the test module
@@ -87,6 +89,24 @@ test('that that adding two items of the first product gives a correct row-sum in
     // when you turn the assignment in in Jensen LearnPoint
 
   });
-});
+},50000); // timeout
 
 
+
+test('test the less button is clicked', async () => {
+
+  await act(async () => {
+
+    render(<App />);
+    await sleep(1000); // wait for fetches
+
+
+    let buttLess = document.querySelectorAll(".product .less");
+    console.log(buttLess)
+    buttLess[0].click();
+    buttLess[0].click();
+    await sleep(200);
+  
+
+  });
+},50000); // timeout
