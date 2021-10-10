@@ -7,8 +7,8 @@ globalThis.React = React;
 // (there are more like screen but nut using them here)
 // see: https://reactjs.org/docs/test-utils.html
 // and https://testing-library.com/docs/queries/about/
-import { render, cleanup } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import {render, cleanup} from '@testing-library/react';
+import {act} from 'react-dom/test-utils';
 
 // Make fetch work be mocking it with node-fetch
 // (does require that you run the backend whilst running tests)
@@ -87,6 +87,6 @@ test('that that adding two items of the first product gives a correct row-sum in
     // when you turn the assignment in in Jensen LearnPoint
 
   });
-});
+}, 50000);
 
 
